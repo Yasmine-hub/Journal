@@ -1,4 +1,5 @@
 require('dotenv').config();
+const termSize = require('term-size');
 const express = require("express");
 const flash = require('connect-flash');
 const bodyParser = require("body-parser");
@@ -13,7 +14,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const FacebookStrategy= require("passport-facebook");
 const findOrCreate = require('mongoose-findorcreate');
 const app = express();
-
+termSize();
 app.set('view engine', 'ejs');
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: true}));
