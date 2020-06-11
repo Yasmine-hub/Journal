@@ -1,0 +1,39 @@
+<%- include("partials/header") -%>
+
+
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+    <h2>Sign Up</h2> 
+    <div class="col-lg">
+        
+        <li class="err"><%= message.error %></li>
+      
+        <form action="/signup" method="POST">
+            <div class="form-group">
+            <label for="">First Name</label>
+        <input type="text" class="form-control" name="fName" required>
+        <label for="">Last Name</label>
+        <input type="text" class="form-control" name="lName" required>
+        <label for="">Email</label>
+        <input type="email" class="form-control" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" required>
+             </div>
+        <button type="submit" class="btn">Sign Up</button>
+        <h2>Or</h2>
+        </form>
+    </div>
+
+<div class="col-lg"><div class="btn btn-social btn-google">
+    <i class="fab fa-google"></i><a class="social" href="/auth/google">SignUp with Google</a> </div>
+<button class="btn btn-social btn-facebook"><i class="fab fa-facebook"></i><a class="social" href="/auth/facebook">SignUp with Facebook</a></button>
+<!-- <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div> -->
+</div>
+
+</div>
+</div>
+</div>
+
+
+<%- include("partials/footer") -%>
