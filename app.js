@@ -1,4 +1,5 @@
 require('dotenv').config();
+const http= require ("http");
 const termSize = require('term-size');
 const express = require("express");
 const flash = require('connect-flash');
@@ -75,7 +76,8 @@ app.use(function(req, res, next){
   callbackURL: "https://agile-oasis-50282.herokuapp.com:5000/auth/facebook/home"
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
+  console.log(accessToken);
+  
   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
     return cb(err, user);
   });
@@ -89,7 +91,6 @@ passport.use(new GoogleStrategy({
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
   User.findOrCreate({ googleId: profile.id }, function (err, user) {
     return cb(err, user);
   });
@@ -224,6 +225,6 @@ app.post("/compose", function(req, res) {
 });
 });
 
-const server = app.listen(5000, function(){
+app.listen(5000, function(){
   console.log('listening on *:5000');
 });
