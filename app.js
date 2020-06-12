@@ -2,6 +2,7 @@ require('dotenv').config();
 const http= require ("http");
 const termSize = require('term-size');
 const express = require("express");
+const cookieSession= require("cookie-session");
 const flash = require('connect-flash');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
@@ -31,7 +32,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 // Schema modeling 
 const userSchema = new mongoose.Schema({
