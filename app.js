@@ -224,6 +224,8 @@ app.post("/compose", function(req, res) {
 });
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000!");
+const server = app.listen(5000, function(){
+  console.log('listening on *:5000');
 });
+const io = require('socket.io')(server);
+
