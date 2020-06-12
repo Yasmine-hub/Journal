@@ -2,13 +2,13 @@ require('dotenv').config();
 const http= require ("http");
 const termSize = require('term-size');
 const express = require("express");
-const cookieSession= require("cookie-session");
 const flash = require('connect-flash');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -24,15 +24,30 @@ app.use(cookieParser());
 app.use(express.static("public"));
 app.set('trust proxy', 1);
 
-app.use(session({
-cookie:{
-    secure: true,
-    maxAge:60000
-       },
-secret: 'secret',
-saveUninitialized: true,
-resave: false
+const store = new MongoDBStore({
+  uri: 'mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority',
+  collection: 'mySessions'
+});
+ 
+store.on('error', function(error) {
+  console.log(error);
+});
+ 
+app.use(require('express-session')({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
 }));
+
+process.on('unhandledRejection', (res, reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+  return reportToUser(JSON.pasre(res)); 
+});
+
 
 app.use(function(req,res,next){
 if(!req.session){
