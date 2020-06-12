@@ -6,7 +6,12 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Yasmine Hussein",
   "license": "ISC",
@@ -31,6 +36,7 @@
     "passport-local-mongoose": "^6.0.1",
     "passport-session": "^1.0.2",
     "path": "^0.12.7",
+    "serve": "^11.3.2",
     "term-size": "^2.2.0"
   },
   "devDependencies": {},
