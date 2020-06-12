@@ -31,7 +31,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority');
 mongoose.set("useCreateIndex", true);
 // Schema modeling 
 const userSchema = new mongoose.Schema({
