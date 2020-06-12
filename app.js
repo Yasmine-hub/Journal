@@ -22,11 +22,25 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static("public"));
+app.set('trust proxy', 1);
+
 app.use(session({
-  secret: "Our little secret.",
-  resave: true,
-  saveUninitialized: true
+cookie:{
+    secure: true,
+    maxAge:60000
+       },
+store: new RedisStore(),
+secret: 'secret',
+saveUninitialized: true,
+resave: false
 }));
+
+app.use(function(req,res,next){
+if(!req.session){
+    return next(new Error('Oh no')) //handle error
+}
+next() //otherwise continue
+});
 
 app.use(flash());
 app.use(passport.initialize());
