@@ -172,11 +172,11 @@ app.get("/compose", function(req, res) {
 
 app.get("/post/:postId", function(req, res){
   const requestedPostId = req.params.postId;
-    Post.findOne({_id: requestedPostId}, function(err, Post){
+    Post.findOne({_id: requestedPostId}, function(err, post){
       res.render("post", {
         name: req.user.fName,
-        title: Post.title,
-        content: Post.content
+        title: post.title,
+        content: post.content
       });
     });
   });
