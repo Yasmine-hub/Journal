@@ -44,16 +44,7 @@ app.use(require('express-session')({
 }));
 
 process.on('unhandledRejection', (res, reason, promise) => {
-  console.log('Unhandled Rejection at:', promise, 'reason:', reason);
-  return reportToUser(JSON.pasre(res)); 
-});
-
-
-app.use(function(req,res,next){
-if(!req.session){
-    return next(new Error('Oh no')) //handle error
-}
-next() //otherwise continue
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason); 
 });
 
 app.use(flash());
