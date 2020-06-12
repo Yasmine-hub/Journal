@@ -1,5 +1,4 @@
 require('dotenv').config();
-const http= require ("http");
 const termSize = require('term-size');
 const express = require("express");
 const flash = require('connect-flash');
@@ -93,7 +92,7 @@ app.use(function(req, res, next){
  passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "https://agile-oasis-50282.herokuapp.com:5000/auth/facebook/home"
+  callbackURL: "https://agile-oasis-50282.herokuapp.com/auth/facebook/home"
 },
 function(accessToken, refreshToken, profile, cb) {
   console.log(accessToken);
@@ -107,7 +106,7 @@ function(accessToken, refreshToken, profile, cb) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://agile-oasis-50282.herokuapp.com:5000/auth/google/home",
+  callbackURL: "https://agile-oasis-50282.herokuapp.com/auth/google/home",
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
 function(accessToken, refreshToken, profile, cb) {
@@ -125,7 +124,6 @@ const Post = mongoose.model("post", postSchema);
 
 // GET requests 
 app.get("/", function(req, res) {
-  console.log(req.session);
   Post.find({}, function(err, posts){
    res.render("home", {
      posts: posts
