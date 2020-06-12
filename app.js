@@ -72,7 +72,7 @@ app.use(function(req, res, next){
  passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "http://localhost:3000/auth/facebook/home"
+  callbackURL: "https://agile-oasis-50282.herokuapp.com:5000/auth/facebook/home"
 },
 function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
@@ -85,7 +85,7 @@ function(accessToken, refreshToken, profile, cb) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/home",
+  callbackURL: "https://agile-oasis-50282.herokuapp.com:5000/auth/google/home",
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
 function(accessToken, refreshToken, profile, cb) {
@@ -227,5 +227,3 @@ app.post("/compose", function(req, res) {
 const server = app.listen(5000, function(){
   console.log('listening on *:5000');
 });
-const io = require('socket.io')(server);
-
