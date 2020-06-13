@@ -25,7 +25,7 @@ app.use(express.static("public"));
 app.set('trust proxy', 1);
 
 const store = new MongoDBStore({
-  uri: 'mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority',
+  uri: 'mongodb+srv://<username>:<passord>@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority',
   collection: 'mySessions'
 });
  
@@ -51,7 +51,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://yasmine:admin@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://<username>:<password>@cluster0-yyfi6.mongodb.net/blogDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 // Schema modeling 
 const userSchema = new mongoose.Schema({
